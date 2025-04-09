@@ -41,7 +41,7 @@ module tb_up_counter;
 
         // Re-enable counting
         enable = 1;
-        #40;
+        #70;
 
         // Reset during operation
         reset = 1;
