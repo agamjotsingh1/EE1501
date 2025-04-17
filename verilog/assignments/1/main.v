@@ -3,14 +3,13 @@ module priority_encoder (
     output reg [1:0] out,
     output reg valid
 );
-    
     always @(*) begin
         valid = | in;
         casez (in)
-            4'bzzz1: out = 2'b00;
-            4'bzz10: out = 2'b01;
-            4'bz100: out = 2'b10;
-            4'b1000: out = 2'b11;
+            4'b1zzz: out = 2'b11;
+            4'b01zz: out = 2'b10;
+            4'b001z: out = 2'b01;
+            4'b0001: out = 2'b00;
             default: out = 2'b00;
         endcase
     end
@@ -32,7 +31,10 @@ module up_counter(
     always @(posedge clk or posedge reset) begin
         if(reset) count <= 4'b0000;
         else if(enable) begin
-            count <= count + 1;
+            count[0] <= ~count[0];
+            if(count[0]) count[1] <= ~count[1]; 
+            if(count[0] & count[1]) count[2] <= ~count[2]; 
+            if(count[0] & count[1] & count[2]) count[3] <= ~count[3]; 
         end
     end
 endmodule
