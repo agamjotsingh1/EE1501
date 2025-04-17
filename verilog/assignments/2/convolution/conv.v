@@ -1,4 +1,4 @@
-module convolve(
+module conv(
     input [3:0] x[7:0],
     input [3:0] h[7:0],
     output reg [3:0] out[14:0]

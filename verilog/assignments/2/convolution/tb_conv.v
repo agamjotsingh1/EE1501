@@ -1,38 +1,65 @@
 `timescale 1ns / 1ps
 
 module tb_conv;
-
     reg [3:0] x[7:0];
     reg [3:0] h[7:0];
     wire [3:0] out[14:0];
 
-    // Instantiate the DUT
-    convolve uut (
-        .x(x),
-        .h(h),
-        .out(out)
-    );
+    conv dut(.x(x), .h(h), .out(out));
 
     initial begin
-        // Initialize x
+        $dumpfile("conv.vcd");
+        $dumpvars(0, tb_conv);
+        $monitor("> TestCase\nx = [%d %d %d %d %d %d %d %d]\nh = [%d %d %d %d %d %d %d %d]\nx*h = [%d %d %d %d %d %d %d %d]\n", x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7]);
         x[0] = 4'd1; x[1] = 4'd2; x[2] = 4'd3; x[3] = 4'd4;
         x[4] = 4'd0; x[5] = 4'd1; x[6] = 4'd0; x[7] = 4'd1;
-
-        // Initialize h
         h[0] = 4'd1; h[1] = 4'd0; h[2] = 4'd1; h[3] = 4'd0;
         h[4] = 4'd1; h[5] = 4'd0; h[6] = 4'd1; h[7] = 4'd0;
-
         #10;
 
-        $display("Convolution result:");
-        for (int i = 0; i < 15; i = i + 1) begin
-            $display("out[%0d] = %0d", i, out[i]);
-        end
+        x[0] = 4'd1; x[1] = 4'd1; x[2] = 4'd1; x[3] = 4'd1;
+        x[4] = 4'd1; x[5] = 4'd1; x[6] = 4'd1; x[7] = 4'd1;
+        h[0] = 4'd1; h[1] = 4'd1; h[2] = 4'd1; h[3] = 4'd1;
+        h[4] = 4'd1; h[5] = 4'd1; h[6] = 4'd1; h[7] = 4'd1;
+        #10;
+
+        x[0] = 4'd1; x[1] = 4'd0; x[2] = 4'd1; x[3] = 4'd0;
+        x[4] = 4'd1; x[5] = 4'd0; x[6] = 4'd1; x[7] = 4'd0;
+        h[0] = 4'd1; h[1] = 4'd0; h[2] = 4'd1; h[3] = 4'd0;
+        h[4] = 4'd1; h[5] = 4'd0; h[6] = 4'd1; h[7] = 4'd0;
+        #10;
+
+        x[0] = 4'd1; x[1] = 4'd2; x[2] = 4'd3; x[3] = 4'd4;
+        x[4] = 4'd5; x[5] = 4'd6; x[6] = 4'd7; x[7] = 4'd8;
+        h[0] = 4'd1; h[1] = 4'd1; h[2] = 4'd1; h[3] = 4'd1;
+        h[4] = 4'd1; h[5] = 4'd1; h[6] = 4'd1; h[7] = 4'd1;
+        #10;
+
+        x[0] = 4'd5; x[1] = 4'd5; x[2] = 4'd5; x[3] = 4'd5;
+        x[4] = 4'd5; x[5] = 4'd5; x[6] = 4'd5; x[7] = 4'd5;
+        h[0] = 4'd1; h[1] = 4'd2; h[2] = 4'd3; h[3] = 4'd4;
+        h[4] = 4'd5; h[5] = 4'd6; h[6] = 4'd7; h[7] = 4'd8;
+        #10;
+
+        x[0] = 4'd15; x[1] = 4'd15; x[2] = 4'd15; x[3] = 4'd15;
+        x[4] = 4'd15; x[5] = 4'd15; x[6] = 4'd15; x[7] = 4'd15;
+        h[0] = 4'd15; h[1] = 4'd15; h[2] = 4'd15; h[3] = 4'd15;
+        h[4] = 4'd15; h[5] = 4'd15; h[6] = 4'd15; h[7] = 4'd15;
+        #10;
+
+        x[0] = 4'd1; x[1] = 4'd0; x[2] = 4'd0; x[3] = 4'd0;
+        x[4] = 4'd0; x[5] = 4'd0; x[6] = 4'd0; x[7] = 4'd0;
+        h[0] = 4'd2; h[1] = 4'd3; h[2] = 4'd4; h[3] = 4'd5;
+        h[4] = 4'd6; h[5] = 4'd7; h[6] = 4'd8; h[7] = 4'd9;
+        #10;
+
+        x[0] = 4'd7; x[1] = 4'd3; x[2] = 4'd9; x[3] = 4'd2;
+        x[4] = 4'd5; x[5] = 4'd1; x[6] = 4'd8; x[7] = 4'd4;
+        h[0] = 4'd6; h[1] = 4'd2; h[2] = 4'd7; h[3] = 4'd1;
+        h[4] = 4'd9; h[5] = 4'd3; h[6] = 4'd5; h[7] = 4'd8;
+        #10;
 
         $finish;
     end
 
 endmodule
-
-// iverilog -g2012 -o tb_conv.vvp conv.v tb_conv.v
-// vvp tb_conv.vvp

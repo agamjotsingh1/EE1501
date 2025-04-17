@@ -1,0 +1,61 @@
+$date
+	Thu Apr 17 22:07:16 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_conv $end
+$scope module dut $end
+$scope begin $ivl_for_loop0 $end
+$var integer 32 ! i [31:0] $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$var integer 32 " i [31:0] $end
+$scope begin $ivl_for_loop2 $end
+$var integer 32 # j [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1000 #
+b1000 "
+b1111 !
+$end
+#10000
+b1000 #
+b1000 "
+b1111 !
+#20000
+b1000 #
+b1000 "
+b1111 !
+#30000
+b1000 #
+b1000 "
+b1111 !
+#40000
+b1000 #
+b1000 "
+b1111 !
+#50000
+b1000 #
+b1000 "
+b1111 !
+#60000
+b1000 #
+b1000 "
+b1111 !
+#70000
+b1000 #
+b1000 "
+b1111 !
+#80000
