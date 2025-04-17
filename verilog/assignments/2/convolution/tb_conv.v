@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module convolve_tb;
+module tb_conv;
 
     reg [3:0] x[7:0];
     reg [3:0] h[7:0];
