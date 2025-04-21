@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module ripple_adder_nand (
     input [3:0] a,
     input [3:0] b,

@@ -12,9 +12,16 @@ module tb_ripple_adder_nand;
     initial begin
         $dumpfile("ripple_adder_nand.vcd");
         $dumpvars(0, tb_ripple_adder_nand);
+        //$monitor("\na = %b, b = %b, cin = %b\nsum = %b, cout = %b", a, b, cin, sum, cout);
 
-        a = 4'b0000; b = 4'b0000; cin = 1'b0;
-        #50 a = 4'b1111; b = 4'b1111; cin = 1'b0;
+        a = 4'b0000; b = 4'b1111; cin = 1'b0;
+        #50 a = 4'b0000; b = 4'b1111; cin = 1'b1;
+        //#50 a = 4'b1111; b = 4'b0000; cin = 1'b1;
+        //#50 a = 4'b1010; b = 4'b0101; cin = 1'b1;
+        //#50 a = 4'b1111; b = 4'b0001; cin = 1'b0;
+        //#50 a = 4'b1000; b = 4'b0001; cin = 1'b0;
+        #50;
+        /*#50 a = 4'b1111; b = 4'b1111; cin = 1'b0;
         #50 a = 4'b1010; b = 4'b0101; cin = 1'b0;
         #50 a = 4'b0001; b = 4'b0001; cin = 1'b1;
         #50 a = 4'b0110; b = 4'b1001; cin = 1'b0;
@@ -22,7 +29,7 @@ module tb_ripple_adder_nand;
         #50 a = 4'b0000; b = 4'b1010; cin = 1'b0;
         #50 a = 4'b1111; b = 4'b0000; cin = 1'b0;
         #50 a = 4'b1001; b = 4'b1001; cin = 1'b0;
-        #50 a = 4'b0111; b = 4'b0001; cin = 1'b1;
+        #50 a = 4'b0111; b = 4'b0001; cin = 1'b1;*/
 
         $finish;
     end
